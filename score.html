@@ -25,10 +25,11 @@
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   </head>
 <body onLoad="onResetAll()">
+
 <script>
 var color_blue = 'blue';
 var color_red = 'red';
-var color_black = rgb(21,21,21);
+var color_black = 'black';
 
 function change_element(id, value) {
   var cur_val = parseInt(document.getElementById(id).innerHTML);
@@ -131,11 +132,6 @@ function togglered(id) {
 }
 function toggleblue(id) {
    old_color = document.getElementById(id).style.color;
-   
-   alert(old_color);
-   alert(color_black);
-   alert(color_blue);
-   
    if (!old_color || old_color == color_black)
        document.getElementById(id).style.color = color_blue;
    else
@@ -208,10 +204,11 @@ td {
 }
 .cross {
    color: white;
-   background: black;
+   background: rgb(5,5,5);
    width:1em;
    height:1.3em;
    font-size:4em;
+   font-weight:bold;
 }
 </style>
 <table width="100%" border="0px">
