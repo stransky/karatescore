@@ -156,6 +156,11 @@ function onResetAll() {
   setcolor('c1_right_label', color_red);
   setcolor('c2_right_label', color_red);
 
+  setcolor('plus_left_label', color_blue);
+  setcolor('minus_left_label', color_blue);
+  setcolor('plus_right_label', color_red);
+  setcolor('minus_right_label', color_red);
+
   resetcolor('c11');
   resetcolor('c12');
   resetcolor('c13');
@@ -221,7 +226,7 @@ td {
 }
 .cross {
    color: white;
-   background: rgb(5,5,5);
+   background: rgb(10,10,10);
    width:1em;
    height:1.3em;
    font-size:4em;
@@ -231,16 +236,16 @@ td {
 <table width="100%" border="0px">
 <tr>
 <td>
-<input type='button' value="+" onclick="change_element('score_left', 1)"><br />
-<input type='button' value="-" onclick="change_element('score_left', -1)">
+<input type='button' value="+" onclick="change_element('score_left', 1)" id="plus_left_label"><br />
+<input type='button' value="-" onclick="change_element('score_left', -1)" id="minus_left_label">
 
 <td><div id="score_left" class='big'>0</div>
 <td><div class='big' id='center'>:</div>
 <td>
 <div id="score_right" class='big'>0</div>
 <td>
-<input type='button' value="+" onclick="change_element('score_right', 1)"><br />
-<input type='button' value="-" onclick="change_element('score_right', -1)">
+<input type='button' value="+" onclick="change_element('score_right', 1)" id="plus_right_label"><br />
+<input type='button' value="-" onclick="change_element('score_right', -1)" id="minus_right_label">
 </table>
 <table>
 <tr><td>
