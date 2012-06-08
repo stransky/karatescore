@@ -95,7 +95,6 @@ function onReset(time) {
    document.getElementById('timer').value = time;
    document.getElementById('timer_milisec').value = ".00";
 }
-
 function onPause() {
    if (!running) return;
    if (!paused) {
@@ -140,12 +139,23 @@ function toggleblue(id) {
 function resetcolor(id) {
    document.getElementById(id).style.color = color_black;
 }
+function setcolor(id, color) {
+   document.getElementById(id).style.color = color;
+}
 function onResetAll() {
   onReset("3:00");
   
   set_element('score_left',0);
-  set_element('score_right',0);
+  setcolor('score_left', color_blue);
   
+  set_element('score_right',0);
+  setcolor('score_right', color_red);
+
+  setcolor('c1_left_label', color_blue);
+  setcolor('c2_left_label', color_blue);
+  setcolor('c1_right_label', color_red);
+  setcolor('c2_right_label', color_red);
+
   resetcolor('c11');
   resetcolor('c12');
   resetcolor('c13');
@@ -165,6 +175,13 @@ function onResetAll() {
   resetcolor('cd22');
   resetcolor('cd23');
   resetcolor('cd24');
+}
+function switchColors() {
+  tmp_color = color_blue;
+  color_blue = color_red;
+  color_red = tmp_color;
+  
+  onResetAll();
 }
 </script>
 <style type="text/css">
@@ -217,10 +234,10 @@ td {
 <input type='button' value="+" onclick="change_element('score_left', 1)"><br />
 <input type='button' value="-" onclick="change_element('score_left', -1)">
 
-<td><div id="score_left" class='big' style="color:blue">0</div>
+<td><div id="score_left" class='big'>0</div>
 <td><div class='big' id='center'>:</div>
 <td>
-<div id="score_right" class='big' style="color:red">0</div>
+<div id="score_right" class='big'>0</div>
 <td>
 <input type='button' value="+" onclick="change_element('score_right', 1)"><br />
 <input type='button' value="-" onclick="change_element('score_right', -1)">
@@ -230,26 +247,26 @@ td {
 </table>
 <table width="100%">
 <tr>
-<td><span style="font-size:4em;color:blue;">C1:</span>
+<td><span style="font-size:4em;" id="c1_left_label">C1:</span>
 <input type='button' value="X" class="cross" onclick="toggleblue('c11')" id="c11">
 <input type='button' value="X" class="cross" onclick="toggleblue('c12')" id="c12">
 <input type='button' value="X" class="cross" onclick="toggleblue('c13')" id="c13">
 <input type='button' value="X" class="cross" onclick="toggleblue('c14')" id="c14">
 
-<td><span style="font-size:4em;color:red;">C1:</span>
+<td><span style="font-size:4em;" id="c1_right_label">C1:</span>
 <input type='button' value="X" class="cross" onclick="togglered('cd11')" id="cd11">
 <input type='button' value="X" class="cross" onclick="togglered('cd12')" id="cd12">
 <input type='button' value="X" class="cross" onclick="togglered('cd13')" id="cd13">
 <input type='button' value="X" class="cross" onclick="togglered('cd14')" id="cd14">
 
 <tr>
-<td><span style="font-size:4em;color:blue;">C2:</span>
+<td><span style="font-size:4em;" id="c2_left_label">C2:</span>
 <input type='button' value="X" class="cross" onclick="toggleblue('c21')" id="c21">
 <input type='button' value="X" class="cross" onclick="toggleblue('c22')" id="c22">
 <input type='button' value="X" class="cross" onclick="toggleblue('c23')" id="c23">
 <input type='button' value="X" class="cross" onclick="toggleblue('c24')" id="c24">
 
-<td><span style="font-size:4em;color:red;">C2:</span>
+<td><span style="font-size:4em;" id="c2_right_label">C2:</span>
 <input type='button' value="X" class="cross" onclick="togglered('cd21')" id="cd21">
 <input type='button' value="X" class="cross" onclick="togglered('cd22')" id="cd22">
 <input type='button' value="X" class="cross" onclick="togglered('cd23')" id="cd23">
@@ -260,7 +277,8 @@ td {
 <table width="100%">
 <tr><td style='font-size:3em;'>TIME
 <tr><td>
-<input id="timer" type="text" value="3:00" class="timer"><input id="timer_milisec" type="text" value=".00" class="timer_milisec">
+<input id="timer" type="text" value="3:00" class="timer">
+<input id="timer_milisec" type="text" value=".00" class="timer_milisec">
 <tr><td>
 <input type='button' value="Start" onclick='onStart()'>
 <input type='button' value="Pause" onclick='onPause()'>
@@ -268,5 +286,6 @@ td {
 <input type='button' value="2:00" onclick='confirm("Reset the timer?") ? onReset("2:00") : null'>
 <input type='button' value="3:00" onclick='confirm("Reset the timer?") ? onReset("3:00") : null'>
 <input type='button' value="Reset All" onclick='confirm("Reset the form?") ? onResetAll() : null'>
+<input type='button' value="Switch" onclick='confirm("Do you want to switch colors?") ? switchColors() : null'>
 </table>
 </body>
